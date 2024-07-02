@@ -46,8 +46,4 @@ def create_voice(voice_type):
         from voice.edge.edge_voice import EdgeVoice
 
         return EdgeVoice()
-    elif voice_type == "xunfei":
-        from voice.xunfei.xunfei_voice import XunfeiVoice
-
-        return XunfeiVoice()
     raise RuntimeError

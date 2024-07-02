@@ -1,5 +1,13 @@
 {
-  "channel_type": "wx",
+  "channel_type": "wechatcom_app",
+  "wechatcom_corp_id": "ww81a92e0816afd69f",
+  "wechatcomapp_token": "cpwtt1yk1saBQf",
+  "wechatcomapp_secret": "Ps8I4o6yMcl1koTGcFLmX2bWMka9NLL9Qvx-Lw2eRGg",
+  "wechatcomapp_agent_id": "1000004",
+  "wechatcomapp_aes_key": "U2AXCyrxszOZglFnmQrBYArgWULxbxQRlLNLXxd5tYU",
+  "wechatcomapp_port": 9898,
+  "open_ai_api_key": "fastgpt-PYewGERC8tKH3duEWY5SJ9qvwV0uXEuoRdgnOX3y4RmOxgNI9Z40pXdedyzdk",
+  "open_ai_api_base": "https://xiaoyibao.samqin.online/api/v1", 
   "model": "",
   "open_ai_api_key": "YOUR API KEY",
   "claude_api_key": "YOUR API KEY",
@@ -9,12 +17,12 @@
   "proxy": "",
   "hot_reload": false,
   "single_chat_prefix": [
-    "bot",
-    "@bot"
+    "",
+    "@xyb"
   ],
   "single_chat_reply_prefix": "[bot] ",
   "group_chat_prefix": [
-    "@bot"
+    "@xyb"
   ],
   "group_name_white_list": [
     "ChatGPT测试群",
@@ -23,7 +31,7 @@
   "image_create_prefix": [
     "画"
   ],
-  "speech_recognition": true,
+  "speech_recognition": false,
   "group_speech_recognition": false,
   "voice_reply_voice": false,
   "conversation_max_tokens": 2500,

@@ -9,7 +9,6 @@ from common.expired_dict import ExpiredDict
 from common import const
 import os
 from .utils import Util
-from config import plugin_config
 
 
 @plugins.register(
@@ -254,7 +253,6 @@ class LinkAI(Plugin):
                     plugin_conf = json.load(f)
                     plugin_conf["midjourney"]["enabled"] = False
                     plugin_conf["summary"]["enabled"] = False
-                    plugin_config["linkai"] = plugin_conf
                     return plugin_conf
         except Exception as e:
             logger.exception(e)
