@@ -1,6 +1,6 @@
 {
     "godcmd": {
-        "password": "",
+        "password": "1234",
         "admin_users": []
     },
     "banwords": {
@@ -27,7 +27,7 @@
             "测试群2": "Kv2fXJcH"
         },
         "midjourney": {
-            "enabled": true,
+            "enabled": false,
             "auto_translate": true,
             "img_proxy": true,
             "max_tasks": 3,

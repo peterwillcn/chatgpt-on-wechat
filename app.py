@@ -11,7 +11,6 @@ from config import load_config
 from plugins import *
 import threading
 
-
 def sigterm_handler_wrap(_signo):
     old_handler = signal.getsignal(_signo)
 

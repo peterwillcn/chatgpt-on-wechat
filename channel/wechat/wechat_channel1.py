@@ -31,10 +31,8 @@ import openai
 import re
 # import os #sam修改
 
-group_id ="填写在minimax账号的group_id"
-api_key="填写minimax申请的apikey"
-openai.api_key = "" #可以不填写
-openai.api_base = " #可以不填写
+group_id = "1747965168630894850"
+api_key='eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJHcm91cE5hbWUiOiJxaW54aWFvcWlhbmciLCJVc2VyTmFtZSI6InFpbnhpYW9xaWFuZyIsIkFjY291bnQiOiIiLCJTdWJqZWN0SUQiOiIxNzQ3OTY1MTY4NjM1MDg5MTU0IiwiUGhvbmUiOiIxODUxNjU2OTEzOCIsIkdyb3VwSUQiOiIxNzQ3OTY1MTY4NjMwODk0ODUwIiwiUGFnZU5hbWUiOiIiLCJNYWlsIjoiIiwiQ3JlYXRlVGltZSI6IjIwMjQtMDUtMTcgMTA6MDk6NDYiLCJpc3MiOiJtaW5pbWF4In0.tWsjSvb3FPiDkMXzkvyClzMBhFj0E3qiVBv3ZvD8yQJnAManOtMTdAtKZg4Ze5-vS5cUJx9JxR2dbI3Qg4RDIYqexel1f0Pk5yyoySJxRoY2eZjiR7OVhja_aAJfyk4QzAQ8BwIgYJUowbszbk2b-xeDJumRmz8AVPb9jAVHAvetxKBC9B526c3KBgdJOfQjdAFOXtaSjszREm2P21L542aVUDW-Wz0HGhlvwy4IQEuV1FLX17MkruGn3kBjA_OavfDy_WJZVlstBKSmc2aiNlsSWAFwT8gbHuz_BU4EcZ52vZzjVbQ2ZNnhq1yqD3eBHn8vfj-lxY6zqmbHzupJTQ'
 
 def replace_markdown_urls(text, replacement):
     # 正则表达式匹配Markdown中的URL
@@ -67,14 +65,10 @@ def text_to_voice(text):
             "pitch": 0,
             # "model": "speech-02", #备用
             "speed": 1.0, #2.0用参数
-            "vol": 1.0,
-            "pitch": 0,
-            "audio_sample_rate": 24000,
-            # The above code is a Python comment that includes a key-value pair related to audio
-            # sample rate. The key is "audio_sample_rate" and the value is 24000. Comments in Python
-            # are used to provide explanations or annotations within the code and are not executed by
-            # the Python interpreter.
-            "bitrate": 128000
+            # "vol": 1.0,
+            # "pitch": 0,
+            # "audio_sample_rate": 24000,
+            # "bitrate": 128000,
             # "timber_weights": [
             #     {
             #         "voice_id": "male-qn-qingse",
@@ -93,32 +87,19 @@ def text_to_voice(text):
                 #     "weight": 1
             #    ]
             }    
-#sam尝试T2A pro提取url修改的部分
-        response = requests.post(url, headers=headers, json=data)
-        data = response.json()
-        audio_url=data["audio_file"]
-        mp3_response = requests.get(audio_url, stream=True)
-        if mp3_response.status_code== 200:
-            file_name = "tmp/" + datetime.datetime.now().strftime('%Y%m%d%H%M%S') + str(random.randint(0, 1000)) + ".mp3"
-            logger.debug(f"[OPENAI] text_to_Voice file_name={file_name}, input={text}") 
-            with open(file_name, 'wb') as f:
-               for chunk in mp3_response.iter_content(1024):
-                   f.write(chunk) 
-            # output_file_path = os.path.abspath(file_name)
-            # print(f"文件路径: {output_file_path} \n复制并粘贴到文件管理器或浏览器中打开:")
-            # subprocess.run(["open", "-W", output_file_path])
-            reply = Reply(ReplyType.VOICE, file_name) 
-        else:
-            print(f"Failed to download audio, status code: {response.status_code}")
-#可以配合T2A的接口代码        
-        # response = requests.post(url, headers=headers, json=data)
-        # file_name = "tmp/" + datetime.datetime.now().strftime('%Y%m%d%H%M%S') + str(random.randint(0, 1000)) + ".mp3"
-        # logger.debug(f"[OPENAI] text_to_Voice file_name={file_name}, input={text}")
-        # with open(file_name, 'wb') as f:
-        #     f.write(response.content)
-        # logger.info(f"[OPENAI] text_to_Voice success")
-        # reply = Reply(ReplyType.VOICE, file_name)
 
+        
+        response = requests.post(url, headers=headers, json=data)
+        file_name = "tmp/" + datetime.datetime.now().strftime('%Y%m%d%H%M%S') + str(random.randint(0, 1000)) + ".mp3"
+        logger.debug(f"[OPENAI] text_to_Voice file_name={file_name}, input={text}")
+        with open(file_name, 'wb') as f:
+            f.write(response.content)
+        logger.info(f"[OPENAI] text_to_Voice success")
+        reply = Reply(ReplyType.VOICE, file_name)
+        # 获取输出文件的绝对路径
+        # output_file_path = os.path.abspath("filename")
+        # print("保存成功",output_file_path)
+         print("测试看下text的内容"，text)
     except Exception as e:
         logger.error(e)
         reply = Reply(ReplyType.ERROR, "遇到了一点小问题，请稍后再问我吧")
